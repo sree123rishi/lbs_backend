@@ -1,7 +1,5 @@
 // Import required modules
 const express = require("express");
-app.use(express.cookieParser('your secret option here'));
-app.use(express.session());
 const router = express.Router();
 
 // Import functions from controller
