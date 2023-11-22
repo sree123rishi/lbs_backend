@@ -28,12 +28,15 @@ const PORT = process.env.PORT || 8080
 app.use(logger("dev"))
 app.use("/public", express.static("public"));
 
+
+
+
 // Set middleware to process form data
 app.use(express.urlencoded({extended: false}));
 
 // Connect to DB
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI || "mongodb+srv://rishisai766:rishi123@cluster0.9nr5daj.mongodb.net/", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -51,7 +54,7 @@ app.use(cors({
 // Set middleware to manage sessions
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "secret",
     resave: true,
     saveUninitialized: true,
   })
@@ -59,6 +62,7 @@ app.use(
 
 // Parse cookies used for session management
 app.use(cookieParser({ secret: 'keyboard cat', key: 'sid', cookie: { secure: true }}));
+
 
 // Parse JSON objects in request bodies
 app.use(express.json())
