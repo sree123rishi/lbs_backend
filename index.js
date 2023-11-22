@@ -58,7 +58,7 @@ app.use(
 );
 
 // Parse cookies used for session management
-app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(cookieParser({ secret: 'keyboard cat', key: 'sid', cookie: { secure: true }}));
 
 // Parse JSON objects in request bodies
 app.use(express.json())
